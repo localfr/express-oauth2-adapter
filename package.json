@@ -1,0 +1,12 @@
+{
+  "name": "express-oauth2-adapter",
+  "scripts": {
+    "clean": "lerna run clean",
+    "dev": "lerna run dev --stream",
+    "build": "lerna run build --parallel",
+    "test": "lerna run test --parallel"
+  },
+  "dependencies": {
+    "lerna": "^4.0.0"
+  }
+}
