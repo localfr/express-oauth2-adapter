@@ -1,6 +1,6 @@
 {
     "name": "@localfr/auth-module-types",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": "localfr",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
