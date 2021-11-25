@@ -1,12 +1,5 @@
-/******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ 128:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.EndpointMethods = exports.endpointsUrls = exports.allEndpoints = exports.Endpoint = void 0;
 /**
  * Liste des Handlers proposé par ce module
@@ -40,25 +33,4 @@ exports.EndpointMethods = {
     [Endpoint.FIND_USER_BY_EMAIL]: 'get',
     [Endpoint.SEND_PWD_LINK]: 'post',
 };
-
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat */
-/******/ 	
-/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
-/******/ 	
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__[128](0, __webpack_exports__);
-/******/ 	module.exports = __webpack_exports__;
-/******/ 	
-/******/ })()
-;
 //# sourceMappingURL=index.js.map

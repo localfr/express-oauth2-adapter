@@ -3,6 +3,9 @@
     "module": "CommonJS",
     "target": "ES2019",
     "lib": ["ES2019", "DOM"],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "alwaysStrict": true,
     "strict": true,
     "preserveConstEnums": true,
@@ -12,11 +15,13 @@
     "declaration": true,
     "declarationDir": "./dist",
     "declarationMap": false,
+    "outDir": "./dist",
     "paths": {
       "@/*": ["./src/*"],
     }
   },
   "exclude": [
     "node_modules",
+    "./dist"
   ],
 }

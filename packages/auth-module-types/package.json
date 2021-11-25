@@ -6,7 +6,7 @@
     "types": "./dist/index.d.ts",
     "scripts": {
         "clean": "rm -rf ./dist",
-        "build": "ncc build ./src/index.ts -s --no-source-map-register -o ./dist",
+        "build": "tsc -p tsconfig.json",
         "test": "jest --passWithNoTests"
     },
     "devDependencies": {

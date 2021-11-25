@@ -6,7 +6,7 @@
     "types": "./dist/index.d.ts",
     "scripts": {
         "clean": "rm -rf ./dist",
-        "build": "webpack -c webpack.config.js",
+        "build": "tsc -p tsconfig.json",
         "start": "TZ=Europe/Paris node ./node_modules/@localfr/auth-express-router/dist/server.js",
         "test": "jest --passWithNoTests --watch",
         "run-and-test": "start-server-and-test http://0.0.0.0:3000/auth/_health"
