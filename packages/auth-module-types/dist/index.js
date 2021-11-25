@@ -1,12 +1,60 @@
-/******/ (() => { // webpackBootstrap
+module.exports =
+/******/ (function(modules, runtime) { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		var threw = true;
+/******/ 		try {
+/******/ 			modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 			threw = false;
+/******/ 		} finally {
+/******/ 			if(threw) delete installedModules[moduleId];
+/******/ 		}
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	__webpack_require__.ab = __dirname + "/";
+/******/
+/******/ 	// the startup function
+/******/ 	function startup() {
+/******/ 		// Load entry module and return exports
+/******/ 		return __webpack_require__(980);
+/******/ 	};
+/******/
+/******/ 	// run startup
+/******/ 	return startup();
+/******/ })
+/************************************************************************/
+/******/ ({
 
-/***/ 128:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ 980:
+/***/ (function(__unusedmodule, exports) {
 
+"use strict";
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.EndpointMethods = exports.endpointsUrls = exports.allEndpoints = exports.Endpoint = void 0;
 /**
  * Liste des Handlers proposé par ce module
@@ -44,21 +92,5 @@ exports.EndpointMethods = {
 
 /***/ })
 
-/******/ 	});
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat */
-/******/ 	
-/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
-/******/ 	
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__[128](0, __webpack_exports__);
-/******/ 	module.exports = __webpack_exports__;
-/******/ 	
-/******/ })()
-;
+/******/ });
 //# sourceMappingURL=index.js.map
