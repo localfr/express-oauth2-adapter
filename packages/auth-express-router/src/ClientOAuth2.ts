@@ -27,12 +27,12 @@ export function ttl(date: string): number {
 }
 
 export let _refreshTimeout: NodeJS.Timeout;
-export function refreshApiToken(): void {
+export async function refreshApiToken(): Promise<void> {
   console.debug('refreshing token...');
 
   _refreshTimeout && clearTimeout(_refreshTimeout);
 
-  client
+  return client
   .credentials
   .getToken()
   .then(response => {

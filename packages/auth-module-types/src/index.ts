@@ -35,6 +35,12 @@ export namespace HttpResponses {
   export type _HEALTH = {
     success: boolean,
   }
+  export type GENERATE_USER_TOKEN = {
+    access_token: string,
+    expires_in: number,
+    refresh_token: string,
+    token_type: string,
+  }
 }
 
 export type Handlers = Record<Endpoint, {

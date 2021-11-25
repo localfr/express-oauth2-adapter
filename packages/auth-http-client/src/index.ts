@@ -10,4 +10,9 @@ export default class HttpClient {
     const response = await this.$http.get<HttpResponses._HEALTH>(urls._HEALTH);
     return response.data;
   }
+
+  async login(username: string, password: string) {
+    const response = await this.$http.post<HttpResponses.GENERATE_USER_TOKEN>(urls.GENERATE_USER_TOKEN, { username, password });
+    return response.data;
+  }
 }

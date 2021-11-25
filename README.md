@@ -8,8 +8,7 @@ C'est un package apportant tout le typing partagé entre les différents package
 C'est un package qui propose un client http basé sur axios pour consommer l'api proposée par l'auth-express-router
 
 # Pour développper les packages
-Chaque pkg propose les scripts npm "build", "clean" et "test"
-Le pkg auth-express-router propose le script "dev"
+Chaque pkg propose les scripts npm "build", "clean", "start" et "test"
 ```js
 // On installe les dépendances
 npm install

@@ -1,9 +1,8 @@
 import Axios from 'axios';
 import { Express, Router } from 'express';
+import { validate as isEmail } from 'email-validator';
 import { Endpoint, Handlers, endpointsUrls as urls, allEndpoints } from '@localfr/auth-module-types';
 import { client, refreshApiToken, _state } from './ClientOAuth2';
-import { validate as isEmail } from 'email-validator';
-
 import config from './config';
 
 async function findUser(email: string) {
@@ -34,7 +33,7 @@ async function findUser(email: string) {
 }
 
 async function resetPassword(userId: string) {
-  const url = `${config.localfr.api.baseUrl}/api/emails/reset-password`;
+  const url = `${config.localfr.api.baseUrl}/api${config.localfr.api.resetPasswordEndpoint}`;
   const body = { userId };
   const headers = {
     'Authorization': `${_state.tokenType} ${_state.accessToken}`,
@@ -44,7 +43,7 @@ async function resetPassword(userId: string) {
   return Axios.post(url, body, { headers });
 }
 
-const handlers: Handlers = {
+export const handlers: Handlers = {
   [Endpoint._HEALTH]: {
     method: 'get',
     path: urls._HEALTH,
@@ -69,6 +68,8 @@ const handlers: Handlers = {
     method: 'post',
     path: urls.REFRESH_USER_TOKEN,
     async handler(req, res) {
+      if(!('user' in req.body)){ return res.status(400).send() }
+      
       const data = req.body;
       const token = client.createToken(data.user.access_token, data.user.refresh_token, data.user.token_type);
       
@@ -87,7 +88,7 @@ const handlers: Handlers = {
     path: urls.FIND_USER_BY_EMAIL,
     async handler(req, res) {
       const email = req.params.email;
-    
+  
       if (!isEmail(email)) {
         return res.status(400).send({
           status: 400,
@@ -110,10 +111,18 @@ const handlers: Handlers = {
       if (!email) {
         return res.status(400).send('Missing email !');
       }
-    
+
+      if(!isEmail(email)){
+        return res.status(400).send({
+          status: 400,
+          statusText: 'Bad Request',
+          message: 'Invalid email input.'
+        });
+      }
+
       return findUser(email)
       .then(user => {
-        if(!user){ return res.status(404); }
+        if(!user){ return res.status(404).send(); }
         return resetPassword(user.id)
         .then(response => res.json(response.data))
       })
@@ -122,7 +131,7 @@ const handlers: Handlers = {
   }
 }
 
-export function register(root: string, app: Express, actives?: Endpoint[]): void {
+export function register(root: string, app: Express, actives?: Endpoint[]): Promise<Express> {
   // Création du routeur express
   const router = Router();
   // Activation des urls demandés
@@ -132,7 +141,6 @@ export function register(root: string, app: Express, actives?: Endpoint[]): void
     router[ method ](path, handler);
   });
   // Démarrage de la routine de vérification du token de l'api
-  refreshApiToken();
   // Mise en place du router dans l'application
-  app.use(root, router);
+  return refreshApiToken().then(() => app.use(root, router));
 };

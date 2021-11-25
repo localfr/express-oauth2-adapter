@@ -10,5 +10,5 @@ export declare const _state: State;
 export declare const client: ClientOAuth2;
 export declare function ttl(date: string): number;
 export declare let _refreshTimeout: NodeJS.Timeout;
-export declare function refreshApiToken(): void;
+export declare function refreshApiToken(): Promise<void>;
 export {};

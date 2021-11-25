@@ -4,6 +4,7 @@ declare const _default: {
             baseUrl: string | undefined;
             tokenEndpoint: string;
             usersEndpoint: string;
+            resetPasswordEndpoint: string;
             oauth2: {
                 tokenUri: string;
                 clientId: string | undefined;

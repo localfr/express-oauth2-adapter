@@ -14,6 +14,19 @@ const AUTH_ROOT_SEGMENT = process.env.AUTH_ROOT_SEGMENT || '/auth';
 export const app = Express();
 app.use(BodyParser.json());
 
-register(AUTH_ROOT_SEGMENT, app);
+export const server = (async () => {
+  await register(AUTH_ROOT_SEGMENT, app);
+  await new Promise((resolve) => {
+    const server = app.listen(AUTH_SERVER_PORT, () => {
+      console.log('Running at %s:%s...', AUTH_SERVER_HOST, AUTH_SERVER_PORT);
+      resolve(server);
+    });
+  });
+})();
 
-export const server = app.listen(AUTH_SERVER_PORT, () => console.log('Running at %s:%s...', AUTH_SERVER_HOST, AUTH_SERVER_PORT));
+process.on('uncaughtException', function(err) {
+  console.error(err.message);
+  process.exit();
+});
+
+export default server;

@@ -4,5 +4,4 @@ module.exports = {
   ...base,
   name: pkg.name,
   globalSetup: './jest.setup.js',
-  globalTeardown: './jest.teardown.js',
 }

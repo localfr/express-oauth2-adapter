@@ -4,9 +4,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "clean": "rm -rf ./{dist,node_modules}",
+    "clean": "rm -rf ./dist",
     "build": "ncc build ./src/index.ts -s --no-source-map-register -o ./dist",
-    "dev": "nodemon --watch \"./src\" --exec='npm run build -- --watch'",
     "test": "jest --passWithNoTests"
   },
   "devDependencies": {

@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst auth_module_types_1 = __webpack_require__(/*! @localfr/auth-module-types */ \"@localfr/auth-module-types\");\nclass HttpClient {\n    constructor($http) {\n        this.$http = $http;\n    }\n    async health() {\n        const response = await this.$http.get(auth_module_types_1.endpointsUrls._HEALTH);\n        return response.data;\n    }\n}\nexports[\"default\"] = HttpClient;\n\n\n//# sourceURL=webpack://@localfr/auth-http-client/./src/index.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst auth_module_types_1 = __webpack_require__(/*! @localfr/auth-module-types */ \"@localfr/auth-module-types\");\nclass HttpClient {\n    constructor($http) {\n        this.$http = $http;\n    }\n    async health() {\n        const response = await this.$http.get(auth_module_types_1.endpointsUrls._HEALTH);\n        return response.data;\n    }\n    async login(username, password) {\n        const response = await this.$http.post(auth_module_types_1.endpointsUrls.GENERATE_USER_TOKEN, { username, password });\n        return response.data;\n    }\n}\nexports[\"default\"] = HttpClient;\n\n\n//# sourceURL=webpack://@localfr/auth-http-client/./src/index.ts?");
 
 /***/ }),
 
