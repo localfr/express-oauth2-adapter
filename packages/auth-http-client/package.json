@@ -16,12 +16,14 @@
         "axios": "^0.24.0"
     },
     "devDependencies": {
+        "@localfr/auth-express-router": "^1.0.2",
         "@types/jest": "^27.0.3",
         "dotenv": "^10.0.0",
         "jest": "^27.3.1",
         "start-server-and-test": "^1.14.0",
         "ts-jest": "^27.0.7",
         "ts-loader": "^9.2.6",
+        "webpack": "^5.64.4",
         "webpack-cli": "^4.9.1"
     },
     "gitHead": "0e2ae073d7d7edcc68b02712d0f49f0c64e37a16"

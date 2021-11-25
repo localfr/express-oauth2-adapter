@@ -1,7 +1,6 @@
 import Express from 'express';
 import BodyParser from 'body-parser';
 import Dotenv from 'dotenv';
-import { Endpoint } from '@localfr/auth-module-types';
 
 Dotenv.config({ path: '../../.env' });
 

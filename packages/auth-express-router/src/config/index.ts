@@ -1,7 +1,7 @@
 export default {
   localfr: {
     api: {
-        baseUrl: process.env.LOCALFR_API_BASE_URL?.toString().replace(/\/$/, ''),
+        baseUrl: (process.env.LOCALFR_API_BASE_URL || '').replace(/\/$/, ''),
         tokenEndpoint: process.env.LOCALFR_API_TOKEN_ENDPOINT || '/oauth/token',
         usersEndpoint: process.env.LOCALFR_API_USERS_ENDPOINT || '/users',
         resetPasswordEndpoint: process.env.LOCALFR_API_USERS_ENDPOINT || '/emails/reset-password',
