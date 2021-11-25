@@ -1,16 +1,22 @@
 {
-  "name": "express-oauth2-adapter",
-  "scripts": {
-    "install": "lerna bootstrap && lerna link",
-    "clean": "lerna run clean",
-    "start": "lerna run start --stream",
-    "build": "lerna run build --include-dependencies --parallel",
-    "run-and-test": "lerna run run-and-test --parallel"
-  },
-  "dependencies": {
-    "lerna": "^4.0.0"
-  },
-  "devDependencies": {
-    "webpack-node-externals": "^3.0.0"
-  }
+    "name": "express-oauth2-adapter",
+    "version": "0.0.1",
+    "scripts": {
+        "install": "lerna bootstrap && lerna link",
+        "clean": "lerna run clean",
+        "start": "lerna run start --stream",
+        "build": "lerna run build --include-dependencies --parallel",
+        "run-and-test": "lerna run run-and-test --parallel"
+    },
+    "dependencies": {
+        "lerna": "^4.0.0"
+    },
+    "devDependencies": {
+        "webpack-node-externals": "^3.0.0"
+    },
+    "licence": "ISC",
+    "author": "localfr",
+    "publishConfig": {
+        "access": "public"
+    }
 }
