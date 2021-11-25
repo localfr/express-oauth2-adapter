@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "scripts": {
         "bump": "lerna version",
-        "publish": "lerna publish --from-package",
+        "publish": "lerna publish from-package",
         "install": "lerna bootstrap && lerna link",
         "clean": "lerna run clean",
         "start": "lerna run start --stream",
