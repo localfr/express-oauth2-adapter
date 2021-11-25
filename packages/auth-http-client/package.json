@@ -1,6 +1,6 @@
 {
     "name": "@localfr/auth-http-client",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "author": "localfr",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -18,7 +18,7 @@
     "devDependencies": {
         "@babel/core": "^7.16.0",
         "@babel/preset-env": "^7.16.4",
-        "@localfr/auth-express-router": "^1.0.3",
+        "@localfr/auth-express-router": "^1.0.4",
         "@types/jest": "^27.0.3",
         "dotenv": "^10.0.0",
         "jest": "^27.3.1",

@@ -1,6 +1,6 @@
 {
     "name": "@localfr/auth-express-router",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "author": "localfr",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
