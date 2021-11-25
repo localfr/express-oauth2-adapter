@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rm -rf ./{dist,node_modules}",
     "build": "ncc build ./src/index.ts -s --no-source-map-register -o ./dist",
+    "dev": "nodemon --watch \"./src\" --exec='npm run build -- --watch'",
     "test": "jest --passWithNoTests"
   },
   "devDependencies": {

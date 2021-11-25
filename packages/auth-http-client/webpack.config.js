@@ -10,6 +10,9 @@ module.exports = {
   ...base,
   entry: './src/index.ts',
   target: 'web',
+  watchOptions: {
+    ignored: [path.resolve(__dirname, 'dist')],
+  },
   plugins: [
     new webpack.EnvironmentPlugin([
       'AUTH_ROOT_SEGMENT'

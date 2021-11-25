@@ -1,9 +1,4 @@
-const webpack = require('webpack');
 const path = require('path');
-const dotenv = require('dotenv');
-
-dotenv.config({path: '../../.env' });
-
 const base = require('../../webpack.config.base');
 
 module.exports = [

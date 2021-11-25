@@ -5,12 +5,15 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./{dist,node_modules}",
-    "dev": "nodemon ./src/index.ts --exec='ncc run'",
+    "dev": "TZ=UTC nodemon \"./dist/server.js\" --watch \"./src\" --exec='npm run build -- --watch'",
     "build": "webpack -c webpack.config.js",
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "body-parser": "^1.19.0",
+    "client-oauth2": "^4.3.3",
+    "email-validator": "^2.0.4",
     "express": "^4.17.1"
   },
   "devDependencies": {
