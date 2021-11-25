@@ -1,6 +1,6 @@
 {
     "name": "@localfr/auth-express-router",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "author": "localfr",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -12,7 +12,7 @@
         "run-and-test": "start-server-and-test http://0.0.0.0:3000/auth/_health"
     },
     "dependencies": {
-        "@localfr/auth-module-types": "^1.0.5",
+        "@localfr/auth-module-types": "^1.0.6",
         "axios": "^0.24.0",
         "body-parser": "^1.19.0",
         "client-oauth2": "^4.3.3",
