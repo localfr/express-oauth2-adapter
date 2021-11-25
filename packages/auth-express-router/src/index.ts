@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { Express, Router } from 'express';
 import { validate as isEmail } from 'email-validator';
-import { Endpoint, Handlers, endpointsUrls as urls, allEndpoints } from '@localfr/auth-module-types';
+import { Endpoint, Handlers, endpointsUrls as urls, allEndpoints, EndpointMethods } from '@localfr/auth-module-types';
 import { client, refreshApiToken, _state } from './ClientOAuth2';
 import config from './config';
 
@@ -45,7 +45,7 @@ async function resetPassword(userId: string) {
 
 export const handlers: Handlers = {
   [Endpoint._HEALTH]: {
-    method: 'get',
+    method: EndpointMethods._HEALTH,
     path: urls._HEALTH,
     async handler(req, res) {
       return res.json({ success: true });
@@ -65,7 +65,7 @@ export const handlers: Handlers = {
     }
   },
   [Endpoint.REFRESH_USER_TOKEN]: {
-    method: 'post',
+    method: EndpointMethods.REFRESH_USER_TOKEN,
     path: urls.REFRESH_USER_TOKEN,
     async handler(req, res) {
       if(!('user' in req.body)){ return res.status(400).send() }
@@ -84,7 +84,7 @@ export const handlers: Handlers = {
     }
   },
   [Endpoint.FIND_USER_BY_EMAIL]: {
-    method: 'get',
+    method: EndpointMethods.FIND_USER_BY_EMAIL,
     path: urls.FIND_USER_BY_EMAIL,
     async handler(req, res) {
       const email = req.params.email;
@@ -103,7 +103,7 @@ export const handlers: Handlers = {
     }
   },
   [Endpoint.SEND_PWD_LINK]: {
-    method: 'post',
+    method: EndpointMethods.SEND_PWD_LINK,
     path: urls.SEND_PWD_LINK,
     async handler(req, res) {
       const email = req.body.email;

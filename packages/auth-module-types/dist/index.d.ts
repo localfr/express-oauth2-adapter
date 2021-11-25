@@ -15,6 +15,8 @@ export declare const allEndpoints: Endpoint[];
  */
 export declare type EndpointsUrls = Record<Endpoint, string>;
 export declare const endpointsUrls: EndpointsUrls;
+declare type Method = 'all' | 'get' | 'post' | 'put' | 'delete' | 'patch' | 'options' | 'head';
+export declare const EndpointMethods: Record<Endpoint, Method>;
 export declare namespace HttpResponses {
     type _HEALTH = {
         success: boolean;
@@ -25,9 +27,21 @@ export declare namespace HttpResponses {
         refresh_token: string;
         token_type: string;
     };
+    type REFRESH_USER_TOKEN = {
+        data: {
+            access_token: string;
+            refresh_token: string;
+            token_type: string;
+            expires_in: number;
+        };
+        expires: number;
+    };
+    type FIND_USER_BY_EMAIL = any;
+    type SEND_PWD_LINK = any;
 }
 export declare type Handlers = Record<Endpoint, {
-    method: 'head' | 'get' | 'post' | 'put' | 'patch' | 'delete';
+    method: Method;
     path: string;
     handler: ExpressHandler;
 }>;
+export {};

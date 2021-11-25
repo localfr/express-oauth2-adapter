@@ -31,6 +31,15 @@ export const allEndpoints = [
   [Endpoint.SEND_PWD_LINK]: '/send-reset-pwd-link',
 }
 
+type Method = 'all' | 'get' | 'post' | 'put' | 'delete' | 'patch' | 'options' | 'head';
+export const EndpointMethods: Record<Endpoint, Method> = {
+  [Endpoint._HEALTH]: 'get',
+  [Endpoint.GENERATE_USER_TOKEN]: 'post',
+  [Endpoint.REFRESH_USER_TOKEN]: 'post',
+  [Endpoint.FIND_USER_BY_EMAIL]: 'get',
+  [Endpoint.SEND_PWD_LINK]: 'post',
+}
+
 export namespace HttpResponses {
   export type _HEALTH = {
     success: boolean,
@@ -41,10 +50,21 @@ export namespace HttpResponses {
     refresh_token: string,
     token_type: string,
   }
+  export type REFRESH_USER_TOKEN = {
+    data: {
+      access_token: string,
+      refresh_token: string,
+      token_type: string,
+      expires_in: number,
+    },
+    expires: number,
+  }
+  export type FIND_USER_BY_EMAIL = any;
+  export type SEND_PWD_LINK = any;
 }
 
 export type Handlers = Record<Endpoint, {
-  method: 'head' | 'get' | 'post' | 'put' | 'patch' | 'delete',
+  method: Method,
   path: string,
   handler: ExpressHandler
 }>;

@@ -4,6 +4,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "bump": "lerna version",
+    "publish": "lerna publish --from-package",
     "clean": "rm -rf ./dist",
     "build": "webpack -c webpack.config.js",
     "start": "TZ=Europe/Paris nodemon \"./src/server.ts\" --watch \"./src\"",

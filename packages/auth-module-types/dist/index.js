@@ -7,7 +7,7 @@
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.endpointsUrls = exports.allEndpoints = exports.Endpoint = void 0;
+exports.EndpointMethods = exports.endpointsUrls = exports.allEndpoints = exports.Endpoint = void 0;
 /**
  * Liste des Handlers proposé par ce module
  */
@@ -32,6 +32,13 @@ exports.endpointsUrls = {
     [Endpoint.REFRESH_USER_TOKEN]: '/refresh-user-token',
     [Endpoint.FIND_USER_BY_EMAIL]: '/users/:email',
     [Endpoint.SEND_PWD_LINK]: '/send-reset-pwd-link',
+};
+exports.EndpointMethods = {
+    [Endpoint._HEALTH]: 'get',
+    [Endpoint.GENERATE_USER_TOKEN]: 'post',
+    [Endpoint.REFRESH_USER_TOKEN]: 'post',
+    [Endpoint.FIND_USER_BY_EMAIL]: 'get',
+    [Endpoint.SEND_PWD_LINK]: 'post',
 };
 
 
