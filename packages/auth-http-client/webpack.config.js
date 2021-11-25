@@ -1,17 +1,26 @@
-const webpack = require('webpack');
-const path = require('path');
-const dotenv = require('dotenv');
-
-dotenv.config({path: '../../.env' });
-
-const base = require('../../webpack.config.base.js');
+const path = require("path")
+const externals = require('webpack-node-externals');
 
 module.exports = {
-  ...base,
-  entry: './src/index.ts',
-  target: 'web',
-  output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
+  mode: "development",
+  devtool: "inline-source-map",
+  entry: {
+    main: path.resolve(__dirname, './src/index.ts'),
   },
-};
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: "index.js",
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+}

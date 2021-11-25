@@ -1,7 +1,22 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "module": "CommonJS",
+    "target": "ES2019",
+    "lib": ["ES2019", "DOM"],
+    "alwaysStrict": true,
+    "strict": true,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationDir": "./dist",
+    "declarationMap": false,
+    "paths": {
+      "@/*": ["./src/*"],
+    }
   },
+  "exclude": [
+    "node_modules",
+  ],
 }

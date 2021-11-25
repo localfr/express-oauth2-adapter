@@ -16,6 +16,8 @@
         "axios": "^0.24.0"
     },
     "devDependencies": {
+        "@babel/core": "^7.16.0",
+        "@babel/preset-env": "^7.16.4",
         "@localfr/auth-express-router": "^1.0.3",
         "@types/jest": "^27.0.3",
         "dotenv": "^10.0.0",
