@@ -1,36 +1,37 @@
 {
-  "name": "@localfr/auth-express-router",
-  "version": "1.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "bump": "lerna version",
+    "name": "auth-express-router",
+    "version": "0.0.1",
+    "author": "localfr",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "bump": "lerna version",
     "publish": "lerna publish --from-package",
     "clean": "rm -rf ./dist",
-    "build": "webpack -c webpack.config.js",
-    "start": "TZ=Europe/Paris nodemon \"./src/server.ts\" --watch \"./src\"",
-    "test": "jest --passWithNoTests --watch",
-    "run-and-test": "start-server-and-test http://0.0.0.0:3000/auth/_health"
-  },
-  "dependencies": {
-    "axios": "^0.24.0",
-    "body-parser": "^1.19.0",
-    "client-oauth2": "^4.3.3",
-    "email-validator": "^2.0.4",
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
-    "@localfr/auth-http-client": "^1.0.0",
-    "@localfr/auth-module-types": "^1.0.0",
-    "@types/body-parser": "^1.19.2",
-    "@types/express": "^4.17.13",
-    "@types/jest": "^27.0.3",
-    "dotenv": "^10.0.0",
-    "jest": "^27.3.1",
-    "path-to-regexp": "^6.2.0",
-    "start-server-and-test": "^1.14.0",
-    "ts-jest": "^27.0.7",
-    "ts-loader": "^9.2.6",
-    "webpack-cli": "^4.9.1"
-  }
+        "build": "webpack -c webpack.config.js",
+        "start": "TZ=Europe/Paris nodemon \"./src/server.ts\" --watch \"./src\"",
+        "test": "jest --passWithNoTests --watch",
+        "run-and-test": "start-server-and-test http://0.0.0.0:3000/auth/_health"
+    },
+    "dependencies": {
+        "axios": "^0.24.0",
+        "body-parser": "^1.19.0",
+        "client-oauth2": "^4.3.3",
+        "email-validator": "^2.0.4",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "@localfr/auth-http-client": "^1.0.0",
+        "@localfr/auth-module-types": "^1.0.0",
+        "@types/body-parser": "^1.19.2",
+        "@types/express": "^4.17.13",
+        "@types/jest": "^27.0.3",
+        "dotenv": "^10.0.0",
+        "jest": "^27.3.1",
+        "path-to-regexp": "^6.2.0",
+        "start-server-and-test": "^1.14.0",
+        "ts-jest": "^27.0.7",
+        "ts-loader": "^9.2.6",
+        "webpack-cli": "^4.9.1"
+    }
 }
