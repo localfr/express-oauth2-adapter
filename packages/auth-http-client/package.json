@@ -1,6 +1,6 @@
 {
     "name": "@localfr/auth-http-client",
-    "version": "1.0.7",
+    "version": "1.1.0",
     "author": "localfr",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -12,11 +12,11 @@
         "run-and-test": "start-server-and-test http://0.0.0.0:3000/auth/_health"
     },
     "dependencies": {
-        "@localfr/auth-module-types": "^1.0.6",
+        "@localfr/auth-module-types": "^1.1.0",
         "axios": "^0.24.0"
     },
     "devDependencies": {
-        "@localfr/auth-express-router": "^1.0.6",
+        "@localfr/auth-express-router": "^1.1.0",
         "@types/jest": "^27.0.3",
         "dotenv": "^10.0.0",
         "jest": "^27.3.1",
