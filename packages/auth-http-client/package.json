@@ -1,6 +1,6 @@
 {
     "name": "@localfr/auth-http-client",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "author": "localfr",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
