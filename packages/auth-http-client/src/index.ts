@@ -16,11 +16,11 @@ export default class HttpClient {
     return response.data;
   }
 
-  async refresh(acess_token: string, refresh_token: string, token_type: string) {
+  async refresh(access_token: string, refresh_token: string, token_type: string) {
     const response = await this.$http.request<HttpResponses.REFRESH_USER_TOKEN>({
       method: EndpointMethods.REFRESH_USER_TOKEN as Method,
       url: urls.REFRESH_USER_TOKEN,
-      data: { acess_token, refresh_token, token_type },
+      data: { access_token, refresh_token, token_type },
     });
 
     return response.data;

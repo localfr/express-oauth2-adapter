@@ -13,11 +13,11 @@ class HttpClient {
         const response = await this.$http.post(auth_module_types_1.endpointsUrls.GENERATE_USER_TOKEN, { username, password });
         return response.data;
     }
-    async refresh(acess_token, refresh_token, token_type) {
+    async refresh(access_token, refresh_token, token_type) {
         const response = await this.$http.request({
             method: auth_module_types_1.EndpointMethods.REFRESH_USER_TOKEN,
             url: auth_module_types_1.endpointsUrls.REFRESH_USER_TOKEN,
-            data: { acess_token, refresh_token, token_type },
+            data: { access_token, refresh_token, token_type },
         });
         return response.data;
     }
