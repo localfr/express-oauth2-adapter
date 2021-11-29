@@ -8,7 +8,7 @@
         "clean": "rm -rf ./dist",
         "build": "tsc -p tsconfig.json",
         "start": "TZ=Europe/Paris node ./node_modules/@localfr/auth-express-router/dist/server.js",
-        "test": "jest --passWithNoTests --watch",
+        "test": "TZ=Europe/Paris jest --passWithNoTests --watch",
         "run-and-test": "start-server-and-test http://0.0.0.0:3000/auth/_health"
     },
     "dependencies": {

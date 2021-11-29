@@ -2,8 +2,16 @@ import Axios from 'axios';
 import { Express, Router } from 'express';
 import { validate as isEmail } from 'email-validator';
 import { Endpoint, Handlers, endpointsUrls as urls, allEndpoints, EndpointMethods } from '@localfr/auth-module-types';
+import { Token } from 'client-oauth2';
 import { client, refreshApiToken, _state } from './ClientOAuth2';
 import config from './config';
+
+function _toCustomToken(token: Token) {
+  const { access_token, refresh_token, token_type } = token.data;
+  const expires_in = token.data.expires_in as unknown as number;
+  const expires_at = new Date(Date.now() + (expires_in * 1000));
+  return { access_token, refresh_token, token_type, expires_in, expires_at };
+}
 
 async function findUser(email: string) {
   const url = `${config.localfr.api.baseUrl}/api${config.localfr.api.usersEndpoint}`;
@@ -55,12 +63,18 @@ export const handlers: Handlers = {
     method: 'post',
     path: urls.GENERATE_USER_TOKEN,
     async handler(req, res) {
+      if(!(['username', 'password']
+      .every(key => Object.keys(req.body).includes(key)))){
+        return res.status(400).send();
+      }
+
       const data = req.body;
       
       return client
       .owner
       .getToken(data.username, data.password)
-      .then(user => res.send(user.data))
+      .then(token => _toCustomToken(token))
+      .then(custom => res.json(custom))
       .catch(error => res.status(401).send(error));
     }
   },
@@ -68,18 +82,18 @@ export const handlers: Handlers = {
     method: EndpointMethods.REFRESH_USER_TOKEN,
     path: urls.REFRESH_USER_TOKEN,
     async handler(req, res) {
-      if(!('user' in req.body)){ return res.status(400).send() }
-      
-      const data = req.body;
-      const token = client.createToken(data.user.access_token, data.user.refresh_token, data.user.token_type);
+      if(!(['access_token', 'refresh_token', 'token_type']
+      .every(key => Object.keys(req.body).includes(key)))){
+        return res.status(400).send();
+      }
+
+      const { access_token, refresh_token, token_type } = req.body;
+      const token = client.createToken(access_token, refresh_token, token_type);
       
       return token
       .refresh()
-      .then(response => {
-        const { expires_in } = response.data;
-        // fix-me: "expires" est-il vraiment nécessaire ?
-        return res.send({ data: response.data, expires: expires_in });
-      })
+      .then(token => _toCustomToken(token))
+      .then(custom => res.json(custom))
       .catch(error => res.status(401).send(error));
     }
   },

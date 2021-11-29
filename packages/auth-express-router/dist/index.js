@@ -10,6 +10,12 @@ const email_validator_1 = require("email-validator");
 const auth_module_types_1 = require("@localfr/auth-module-types");
 const ClientOAuth2_1 = require("./ClientOAuth2");
 const config_1 = __importDefault(require("./config"));
+function _toCustomToken(token) {
+    const { access_token, refresh_token, token_type } = token.data;
+    const expires_in = token.data.expires_in;
+    const expires_at = new Date(Date.now() + (expires_in * 1000));
+    return { access_token, refresh_token, token_type, expires_in, expires_at };
+}
 async function findUser(email) {
     const url = `${config_1.default.localfr.api.baseUrl}/api${config_1.default.localfr.api.usersEndpoint}`;
     const params = {
@@ -57,11 +63,16 @@ exports.handlers = {
         method: 'post',
         path: auth_module_types_1.endpointsUrls.GENERATE_USER_TOKEN,
         async handler(req, res) {
+            if (!(['username', 'password']
+                .every(key => Object.keys(req.body).includes(key)))) {
+                return res.status(400).send();
+            }
             const data = req.body;
             return ClientOAuth2_1.client
                 .owner
                 .getToken(data.username, data.password)
-                .then(user => res.send(user.data))
+                .then(token => _toCustomToken(token))
+                .then(custom => res.json(custom))
                 .catch(error => res.status(401).send(error));
         }
     },
@@ -69,18 +80,16 @@ exports.handlers = {
         method: auth_module_types_1.EndpointMethods.REFRESH_USER_TOKEN,
         path: auth_module_types_1.endpointsUrls.REFRESH_USER_TOKEN,
         async handler(req, res) {
-            if (!('user' in req.body)) {
+            if (!(['access_token', 'refresh_token', 'token_type']
+                .every(key => Object.keys(req.body).includes(key)))) {
                 return res.status(400).send();
             }
-            const data = req.body;
-            const token = ClientOAuth2_1.client.createToken(data.user.access_token, data.user.refresh_token, data.user.token_type);
+            const { access_token, refresh_token, token_type } = req.body;
+            const token = ClientOAuth2_1.client.createToken(access_token, refresh_token, token_type);
             return token
                 .refresh()
-                .then(response => {
-                const { expires_in } = response.data;
-                // fix-me: "expires" est-il vraiment nécessaire ?
-                return res.send({ data: response.data, expires: expires_in });
-            })
+                .then(token => _toCustomToken(token))
+                .then(custom => res.json(custom))
                 .catch(error => res.status(401).send(error));
         }
     },

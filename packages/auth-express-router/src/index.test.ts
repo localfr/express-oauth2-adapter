@@ -1,7 +1,7 @@
 import { HttpResponses } from '@localfr/auth-module-types';
 import Axios, { AxiosInstance, Method } from 'axios';
-import { handlers } from './index';
 import { compile } from 'path-to-regexp';
+import { handlers } from './index';
 
 describe('', () => {
   let axios: AxiosInstance;
@@ -19,6 +19,7 @@ describe('', () => {
     expect(response.data).toHaveProperty('access_token');
     expect(response.data).toHaveProperty('refresh_token');
     expect(response.data).toHaveProperty('expires_in');
+    expect(response.data).toHaveProperty('expires_at');
   });
 
   it('Should return error', async () => {
@@ -74,17 +75,18 @@ describe('', () => {
     it('Should refresh user token', async () => {
       const { method, path } = handlers.REFRESH_USER_TOKEN;
       const { access_token, refresh_token, token_type } = state;
-      const response = await axios.request({ method: method as Method, url: path, data: { user: { access_token, refresh_token, token_type } } });
-      expect(response.data).toHaveProperty('data.token_type');
-      expect(response.data).toHaveProperty('data.access_token');
-      expect(response.data).toHaveProperty('data.refresh_token');
-      expect(response.data).toHaveProperty('data.expires_in');
+      const response = await axios.request({ method: method as Method, url: path, data: { access_token, refresh_token, token_type } });
+      expect(response.data).toHaveProperty('token_type');
+      expect(response.data).toHaveProperty('access_token');
+      expect(response.data).toHaveProperty('refresh_token');
+      expect(response.data).toHaveProperty('expires_in');
+      expect(response.data).toHaveProperty('expires_at');
     });
 
     it('Should return error', async () => {
       const { method, path } = handlers.REFRESH_USER_TOKEN;
       try{
-        await axios.request({ method: method as Method, url: path, data: { user: { access_token: 'access_token', refresh_token: 'refresh_token', token_type: 'token_type' } } });
+        await axios.request({ method: method as Method, url: path, data: { access_token: 'access_token', refresh_token: 'refresh_token', token_type: 'token_type' } });
       } catch(e: any){
         expect(e.response.status).toBe(401);
       }

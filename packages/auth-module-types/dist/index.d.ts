@@ -22,19 +22,18 @@ export declare namespace HttpResponses {
         success: boolean;
     };
     type GENERATE_USER_TOKEN = {
-        access_token: string;
-        expires_in: number;
-        refresh_token: string;
         token_type: string;
+        access_token: string;
+        refresh_token: string;
+        expires_in: number;
+        expires_at: string;
     };
     type REFRESH_USER_TOKEN = {
-        data: {
-            access_token: string;
-            refresh_token: string;
-            token_type: string;
-            expires_in: number;
-        };
-        expires: number;
+        token_type: string;
+        access_token: string;
+        refresh_token: string;
+        expires_in: number;
+        expires_at: string;
     };
     type FIND_USER_BY_EMAIL = any;
     type SEND_PWD_LINK = any;

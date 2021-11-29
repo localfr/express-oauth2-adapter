@@ -4,4 +4,5 @@ module.exports = {
   ...base,
   name: pkg.name,
   globalSetup: './jest.setup.js',
+  modulePathIgnorePatterns: ["<rootDir>/dist/"],
 }

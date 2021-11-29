@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
-const index_1 = require("./index");
 const path_to_regexp_1 = require("path-to-regexp");
+const index_1 = require("./index");
 describe('', () => {
     let axios;
     beforeAll(() => {
@@ -20,6 +20,7 @@ describe('', () => {
         expect(response.data).toHaveProperty('access_token');
         expect(response.data).toHaveProperty('refresh_token');
         expect(response.data).toHaveProperty('expires_in');
+        expect(response.data).toHaveProperty('expires_at');
     });
     it('Should return error', async () => {
         const { method, path } = index_1.handlers.GENERATE_USER_TOKEN;
@@ -72,16 +73,17 @@ describe('', () => {
         it('Should refresh user token', async () => {
             const { method, path } = index_1.handlers.REFRESH_USER_TOKEN;
             const { access_token, refresh_token, token_type } = state;
-            const response = await axios.request({ method: method, url: path, data: { user: { access_token, refresh_token, token_type } } });
-            expect(response.data).toHaveProperty('data.token_type');
-            expect(response.data).toHaveProperty('data.access_token');
-            expect(response.data).toHaveProperty('data.refresh_token');
-            expect(response.data).toHaveProperty('data.expires_in');
+            const response = await axios.request({ method: method, url: path, data: { access_token, refresh_token, token_type } });
+            expect(response.data).toHaveProperty('token_type');
+            expect(response.data).toHaveProperty('access_token');
+            expect(response.data).toHaveProperty('refresh_token');
+            expect(response.data).toHaveProperty('expires_in');
+            expect(response.data).toHaveProperty('expires_at');
         });
         it('Should return error', async () => {
             const { method, path } = index_1.handlers.REFRESH_USER_TOKEN;
             try {
-                await axios.request({ method: method, url: path, data: { user: { access_token: 'access_token', refresh_token: 'refresh_token', token_type: 'token_type' } } });
+                await axios.request({ method: method, url: path, data: { access_token: 'access_token', refresh_token: 'refresh_token', token_type: 'token_type' } });
             }
             catch (e) {
                 expect(e.response.status).toBe(401);
