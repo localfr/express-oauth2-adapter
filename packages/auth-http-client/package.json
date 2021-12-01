@@ -1,6 +1,6 @@
 {
     "name": "@localfr/auth-http-client",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "author": "localfr",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -16,7 +16,7 @@
         "axios": "^0.24.0"
     },
     "devDependencies": {
-        "@localfr/auth-express-router": "^1.1.0",
+        "@localfr/auth-express-router": "^1.2.0",
         "@types/jest": "^27.0.3",
         "dotenv": "^10.0.0",
         "jest": "^27.3.1",
