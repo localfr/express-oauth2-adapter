@@ -9,7 +9,7 @@ const express_1 = require("express");
 const email_validator_1 = require("email-validator");
 const auth_module_types_1 = require("@localfr/auth-module-types");
 const ClientOAuth2_1 = require("./ClientOAuth2");
-const config_1 = __importDefault(require("./config"));
+const env_1 = __importDefault(require("./env"));
 function _toCustomToken(token) {
     const { access_token, refresh_token, token_type } = token.data;
     const expires_in = token.data.expires_in;
@@ -17,7 +17,7 @@ function _toCustomToken(token) {
     return { access_token, refresh_token, token_type, expires_in, expires_at };
 }
 async function findUser(email) {
-    const url = `${config_1.default.localfr.api.baseUrl}/api${config_1.default.localfr.api.usersEndpoint}`;
+    const url = `${env_1.default.localfr.api.baseUrl}/api${env_1.default.localfr.api.usersEndpoint}`;
     const params = {
         params: { email, active: true },
         headers: {
@@ -43,7 +43,7 @@ async function findUser(email) {
     });
 }
 async function resetPassword(userId) {
-    const url = `${config_1.default.localfr.api.baseUrl}/api${config_1.default.localfr.api.resetPasswordEndpoint}`;
+    const url = `${env_1.default.localfr.api.baseUrl}/api${env_1.default.localfr.api.resetPasswordEndpoint}`;
     const body = { userId };
     const headers = {
         'Authorization': `${ClientOAuth2_1._state.tokenType} ${ClientOAuth2_1._state.accessToken}`,

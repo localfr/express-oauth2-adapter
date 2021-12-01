@@ -4,7 +4,7 @@ import { validate as isEmail } from 'email-validator';
 import { Endpoint, Handlers, endpointsUrls as urls, allEndpoints, EndpointMethods } from '@localfr/auth-module-types';
 import { Token } from 'client-oauth2';
 import { client, refreshApiToken, _state } from './ClientOAuth2';
-import config from './config';
+import env from './env';
 
 function _toCustomToken(token: Token) {
   const { access_token, refresh_token, token_type } = token.data;
@@ -14,7 +14,7 @@ function _toCustomToken(token: Token) {
 }
 
 async function findUser(email: string) {
-  const url = `${config.localfr.api.baseUrl}/api${config.localfr.api.usersEndpoint}`;
+  const url = `${env.localfr.api.baseUrl}/api${env.localfr.api.usersEndpoint}`;
   const params = {
     params: { email, active: true },
     headers: {
@@ -41,7 +41,7 @@ async function findUser(email: string) {
 }
 
 async function resetPassword(userId: string) {
-  const url = `${config.localfr.api.baseUrl}/api${config.localfr.api.resetPasswordEndpoint}`;
+  const url = `${env.localfr.api.baseUrl}/api${env.localfr.api.resetPasswordEndpoint}`;
   const body = { userId };
   const headers = {
     'Authorization': `${_state.tokenType} ${_state.accessToken}`,

@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const path_to_regexp_1 = require("path-to-regexp");
 const index_1 = require("./index");
+const accessToken_1 = require("./utils/accessToken");
 describe('', () => {
     let axios;
     beforeAll(() => {
@@ -69,6 +70,17 @@ describe('', () => {
             const { method, path } = index_1.handlers.GENERATE_USER_TOKEN;
             const response = await axios.request({ method: method, url: path, data: { username: 'david.smile@local.test', password: 'password' } });
             state = response.data;
+        });
+        it('Should validate token', async () => {
+            expect(await accessToken_1.verify(state.access_token)).toBeTruthy();
+        });
+        it('Should inalidate token', async () => {
+            try {
+                await accessToken_1.verify('dummy');
+            }
+            catch (e) {
+                expect(e.code).toBe('ERR_JWS_INVALID');
+            }
         });
         it('Should refresh user token', async () => {
             const { method, path } = index_1.handlers.REFRESH_USER_TOKEN;

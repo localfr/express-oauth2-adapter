@@ -2,6 +2,7 @@ import { HttpResponses } from '@localfr/auth-module-types';
 import Axios, { AxiosInstance, Method } from 'axios';
 import { compile } from 'path-to-regexp';
 import { handlers } from './index';
+import { verify } from './utils/accessToken';
 
 describe('', () => {
   let axios: AxiosInstance;
@@ -70,6 +71,18 @@ describe('', () => {
       const { method, path } = handlers.GENERATE_USER_TOKEN;
       const response = await axios.request<HttpResponses.GENERATE_USER_TOKEN>({ method: method as Method, url: path, data: { username: 'david.smile@local.test', password: 'password' } });
       state = response.data;
+    });
+
+    it('Should validate token', async () => {
+      expect(await verify(state.access_token)).toBeTruthy();
+    });
+
+    it('Should inalidate token', async () => {
+      try{
+        await verify('dummy')
+      } catch(e: any){
+        expect(e.code).toBe('ERR_JWS_INVALID');
+      }
     });
 
     it('Should refresh user token', async () => {

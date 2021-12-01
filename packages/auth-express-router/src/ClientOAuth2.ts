@@ -27,7 +27,7 @@ export function ttl(date: string): number {
 }
 
 export let _refreshTimeout: NodeJS.Timeout;
-export async function refreshApiToken(): Promise<void> {
+export async function refreshApiToken(): Promise<State> {
   console.debug('refreshing token...');
 
   _refreshTimeout && clearTimeout(_refreshTimeout);
@@ -46,5 +46,7 @@ export async function refreshApiToken(): Promise<void> {
 
     _refreshTimeout = setTimeout(refreshApiToken, ttl);
     console.debug('access_token will be refreshed in %s seconds.', ttl / 1000);
+
+    return _state;
   });
 }

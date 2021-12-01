@@ -37,6 +37,7 @@ async function refreshApiToken() {
         exports._state.expiresTime = Date.now() + ttl;
         exports._refreshTimeout = setTimeout(refreshApiToken, ttl);
         console.debug('access_token will be refreshed in %s seconds.', ttl / 1000);
+        return exports._state;
     });
 }
 exports.refreshApiToken = refreshApiToken;
